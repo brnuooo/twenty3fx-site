@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<script>try { document.documentElement.dataset.theme = localStorage.getItem('t3-theme') || 'classic'; } catch (e) {}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Pause</title>
+<meta name="description" content="La Pause is a French development studio with roots in music, events and DJing, maker of the Twenty3FX plug-in.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,400;100,500;100,600;100,700;125,900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+main { padding-block: clamp(32px, 6vw, 72px) 96px; }
+.logo { background: #000; border-radius: 12px; overflow: hidden; }
+.logo img { width: 100%; }
+h1 { font-size: clamp(30px, 5vw, 64px); margin-top: clamp(32px, 5vw, 56px); max-width: 18em; }
+.about { margin-top: 24px; max-width: 38em; color: var(--soft); font-size: clamp(17px, 1.6vw, 21px); }
+main .btn { margin-top: 36px; }
+.logo, h1, .about, main .btn { animation: fadeUp .9s var(--ease) both; }
+h1 { animation-delay: .1s; }
+.about { animation-delay: .16s; }
+main .btn { animation-delay: .22s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(26px); } }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Twenty3FX</a>
+  <nav aria-label="Main">
+    <a href="la-pause.html" aria-current="page">La Pause</a>
+    <a href="download.html">Download</a>
+  </nav>
+</div></header>
+
+<main><div class="wrap">
+  <div class="logo"><img src="images/la-pause.webp" alt="La Pause logo" width="1945" height="808"></div>
+  <h1>A French development studio.</h1>
+  <p class="about">La Pause is a French development studio with its roots in music, events and DJing. We build tools for the people who play and produce music, starting from what we know best: the booth. Our plug-in Twenty3FX brings the effects of a DJ mixer into your DAW, with twenty tempo-synced effects on one dial.</p>
+  <a class="btn" href="index.html">Discover Twenty3FX</a>
+</div></main>
+
+<footer><div class="wrap">
+  <img src="images/la-pause.webp" alt="La Pause" width="1945" height="808">
+  <span class="todo">[EMAIL] &nbsp; [LEGAL NOTICE] &nbsp; [TERMS OF SALE] &nbsp; [PRIVACY]</span>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,56 @@
+/* The plug-in, drawn 386 wide. The camera scales it, so it stays sharp. */
+.camera { position: absolute; left: 0; top: 0; transform-origin: 0 0; transition: transform 1.1s cubic-bezier(.65, 0, .2, 1); will-change: transform; }
+.plug, .plug * { position: absolute; box-sizing: border-box; }
+.plug { left: 0; top: 0; width: 386px; height: 1320px; border-radius: 12px; overflow: hidden; background: linear-gradient(var(--top), var(--bot)); box-shadow: inset 0 0 0 1px #0006, 0 30px 80px #0009; color: var(--txt); font: 600 11px/1 var(--font); user-select: none; -webkit-user-select: none; touch-action: pan-y; }
+:where(.plug button) { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+.plug .t { left: 0; width: 100%; text-align: center; white-space: nowrap; letter-spacing: .03em; }
+.dimmable { inset: 0; transition: opacity .2s; }
+.dimmed .dimmable { opacity: .3; pointer-events: none; }
+
+.frame { left: 30px; top: 55px; width: 322px; height: 250px; border-radius: 14px; background: linear-gradient(var(--fre), var(--fr) 12%); box-shadow: 0 4px 14px #000a; }
+.lcd { left: 12px; top: 12px; width: 298px; height: 226px; border-radius: 6px; background: linear-gradient(var(--lcd1), var(--lcd2)); color: var(--lcdt); box-shadow: inset 0 0 0 1px var(--fr); overflow: hidden; }
+.lcd small { color: var(--lcdl); font-size: 7.5px; letter-spacing: .14em; white-space: nowrap; }
+.name { left: 0; width: 100%; top: 34px; text-align: center; font-size: 29px; font-weight: 700; letter-spacing: .3em; padding-left: .3em; white-space: pre; }
+.badge { left: 37px; top: 114px; width: 56px; height: 21px; border-radius: 11px; background: var(--acc); color: #fff; font-size: 8.5px; line-height: 21px; text-align: center; transition: background .15s; }
+.badge.off { background: var(--pill); color: var(--lcdl); }
+.bpm { left: 103px; top: 112px; font-size: 25px; font-variant-numeric: tabular-nums; }
+.meter { left: 37px; width: 92px; height: 7px; background: #fff1; border-radius: 1px; overflow: hidden; }
+.meter i { inset: 0; background: var(--lcdl); transform-origin: 0 50%; transform: scaleX(0); }
+#scope { left: 136px; top: 140px; width: 150px; height: 38px; color: var(--lcdl); }
+.val { left: 28px; top: 186px; font-size: 16px; font-variant-numeric: tabular-nums; }
+
+.arrow { top: 324px; width: 47px; height: 22px; border-radius: 11px; background: var(--pill); box-shadow: inset 0 0 0 1px var(--pillb); color: var(--pillt); font-size: 10px; transition: filter .15s; }
+.arrow:hover, .band:hover { filter: brightness(1.25); }
+.divval { top: 335px; font-size: 16px; }
+.band { top: 366px; width: 58px; height: 25px; border-radius: 13px; background: var(--pill); box-shadow: inset 0 0 0 1px var(--pillb); color: var(--pillt); font-size: 9px; transition: background .15s; }
+.band[aria-pressed="true"] { background: var(--pillon); box-shadow: inset 0 0 0 1.5px #fff5; color: #fff; }
+.auto { left: 75px; top: 402px; width: 112px; height: 58px; border-radius: 29px; background: linear-gradient(var(--big), color-mix(in srgb, var(--big) 70%, #000)); color: var(--bigt) !important; box-shadow: 0 4px 12px #0008; font-size: 10px !important; transition: filter .15s, transform .1s; }
+.auto.off { filter: brightness(.55); }
+.tap { left: 223px; top: 401px; width: 60px; height: 60px; border-radius: 50%; background: #111; box-shadow: inset 0 0 0 4px var(--tap), 0 0 14px color-mix(in srgb, var(--tap) 40%, transparent); color: #eee !important; font-size: 10px !important; transition: transform .1s; }
+.tap:active, .auto:active { transform: scale(.95); }
+
+.well { border-radius: 50%; background: var(--well); box-shadow: inset 0 2px 8px #000a, 0 1px 0 #fff1; }
+.knob { border-radius: 50%; cursor: grab; touch-action: none; background: radial-gradient(circle at 42% 30%, var(--ml), color-mix(in srgb, var(--ml) 70%, var(--md)) 55%, var(--md)); box-shadow: 0 4px 10px #000a; transition: box-shadow .15s; }
+.knob:hover { box-shadow: 0 0 0 1.5px var(--acc), 0 4px 10px #000a; }
+.knob:active { cursor: grabbing; }
+.knob .needle { inset: 0; transition: transform .22s var(--ease); pointer-events: none; }
+.knob .needle::after { content: ""; position: absolute; left: calc(50% - 3px); top: 1px; width: 6px; height: 24%; border-radius: 1px; background: #1b1b1d; }
+.lab { transform: translate(-50%, -50%) rotate(var(--r)); font-size: 10.5px; white-space: nowrap; letter-spacing: .02em; color: var(--txt); padding: 5px; transition: color .3s; }
+.lab:hover { color: var(--acc); }
+.lab[aria-checked="true"] { color: var(--acc); transition-duration: 0s; }
+.notch { left: 192px; top: 638px; width: 1px; height: 8px; background: var(--dim); transform-origin: 0 0; }
+.arc { pointer-events: none; }
+
+.big { top: 1264px; height: 44px; border-radius: 22px; background: linear-gradient(var(--pill), color-mix(in srgb, var(--pill) 75%, #000)); box-shadow: inset 0 0 0 1px var(--pillb), 0 3px 8px #0007; color: var(--pillt) !important; font-size: 12px !important; letter-spacing: .02em; transition: filter .15s; }
+.big:hover { filter: brightness(1.2); }
+.power { left: 160px; top: 1254px; width: 64px; height: 64px; border-radius: 50%; background: radial-gradient(var(--pill) 58%, var(--pow) 60%); box-shadow: 0 3px 10px #0008; color: var(--pillt) !important; font-size: 11px !important; transition: box-shadow .15s; }
+.power[aria-pressed="true"] { box-shadow: 0 0 0 3px var(--acc), 0 0 18px var(--acc); }
+
+.menu { background: #141415; box-shadow: inset 0 0 0 1px #3a3a3d, 0 18px 50px #000c; border-radius: 10px; color: #eee; opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .2s, transform .3s var(--ease); }
+.dimmed .menu.open { opacity: 1; transform: none; pointer-events: auto; }
+.menu h4 { left: 22px; top: 22px; margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .03em; }
+.menu h4::after { content: ""; position: absolute; left: 0; bottom: -7px; width: 22px; height: 2px; background: var(--pillon); }
+.row-m { left: 12px; right: 12px; height: 31px; border-radius: 6px; text-align: left; padding-left: 12px !important; font-size: 11.5px !important; color: #eee !important; transition: background .12s; }
+.row-m:hover { background: #2a2a2c !important; }
+.row-m[aria-checked="true"], .row-m[aria-checked="true"]:hover { background: #b3561d !important; color: #fff !important; }
+.cap { left: 22px; font-size: 7.5px; letter-spacing: .1em; color: #888; }

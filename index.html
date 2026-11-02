@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<script>try { document.documentElement.dataset.theme = localStorage.getItem('t3-theme') || 'classic'; } catch (e) {}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Twenty3FX</title>
+<meta name="description" content="20 tempo-synced DJ effects in one plug-in. VST3 and Audio Unit for Windows and macOS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,400;100,500;100,600;100,700;125,900&display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="plugin.css">
+<style>
+/* The scroll story: text on one side, the plug-in pinned on the other. */
+.story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; max-width: 1320px; margin-inline: auto; padding-inline: 24px; }
+.stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; grid-column: 2; grid-row: 1; }
+.chapters { grid-column: 1; grid-row: 1; }
+.chapter { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-block: 48px; }
+.chapter h1, .chapter h2 { font-size: clamp(30px, 4.4vw, 60px); }
+.chapter h1 { font-size: clamp(40px, 6vw, 84px); }
+.chapter p { margin-top: 20px; max-width: 30em; color: var(--soft); font-size: 19px; transition: color .45s; }
+.chapter .buy { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: 32px; }
+.chapter > * { opacity: .16; transform: translateY(26px); transition: opacity .6s, transform .9s var(--ease); }
+.chapter.now > * { opacity: 1; transform: none; }
+.live { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--rule); max-width: 30em; }
+.live b { display: block; font-weight: 900; font-stretch: 125%; font-size: 22px; letter-spacing: .06em; }
+.live span { color: var(--soft); display: block; min-height: 3em; }
+.names { display: grid; margin-top: 28px; max-width: 30em; }
+.names button { display: flex; align-items: center; gap: 18px; background: none; border: 0; border-top: 1px solid var(--rule); padding: 13px 0; text-align: left; cursor: pointer; color: var(--soft); font-weight: 900; font-stretch: 125%; text-transform: uppercase; font-size: clamp(18px, 2.2vw, 28px); line-height: 1.1; transition: color .3s, padding-left .4s var(--ease), border-color .45s; }
+.names button:last-child { border-bottom: 1px solid var(--rule); }
+.names button:hover, .names button[aria-pressed="true"] { color: var(--copy); padding-left: 10px; }
+.swatch { flex: none; width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(var(--top), var(--bot)); box-shadow: inset 0 0 0 2px var(--pillb), 0 0 0 1px var(--rule); }
+@media (max-width: 860px) {
+  .story { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .stage { grid-column: 1; grid-row: 1; height: 52vh; height: 52svh; z-index: 2; background: var(--page); transition: background .45s; }
+  .chapters { grid-column: 1; grid-row: 2; }
+  .chapter { min-height: 62vh; padding-block: 32px; justify-content: flex-start; }
+  .chapter p { font-size: 17px; margin-top: 12px; }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) { .camera { transition: none; } .chapter > * { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<header class="top over"><div class="wrap">
+  <a class="brand" href="index.html" aria-current="page">Twenty3FX</a>
+  <nav aria-label="Main">
+    <a href="la-pause.html">La Pause</a>
+    <a href="download.html">Download</a>
+  </nav>
+</div></header>
+
+<main id="top">
+  <div class="story">
+    <div class="stage" id="stage" aria-label="Interactive Twenty3FX plug-in">
+      <div class="camera" id="camera">
+      </div>
+    </div>
+
+    <div class="chapters">
+      <article class="chapter" data-focus="0,1320">
+        <h1>The DJ mixer's effects, in your DAW.</h1>
+        <p>This is the plug-in, not a picture of it. Turn the knobs, or scroll and watch it work.</p>
+        <div class="buy"><a class="btn" href="download.html">Get Twenty3FX &middot; 15&nbsp;&euro;</a></div>
+      </article>
+      <article class="chapter" data-focus="40,780" data-run="effects">
+        <h2>Twenty effects. One dial.</h2>
+        <p>Delays, rolls, sweeps, a brake. Every one locks to your tempo.</p>
+        <div class="live"><b data-live-name>ECHO</b><span data-live-desc></span></div>
+      </article>
+      <article class="chapter" data-focus="40,400" data-run="division">
+        <h2>From 1/32 to 16/1.</h2>
+        <p>Follow your DAW's tempo with Auto, or tap your own. The screen always shows the beat time in milliseconds.</p>
+      </article>
+      <article class="chapter" data-focus="310,470" data-run="band">
+        <h2>Only the part you want.</h2>
+        <p>Keep the kick dry and echo the highs. FX Band sends the effect to the lows, the mids, the highs or everything.</p>
+      </article>
+      <article class="chapter" data-focus="40,900" data-run="reverb">
+        <h2>Four kinds of room.</h2>
+        <p>Pick Reverb and choose Standard, Wide, Hall or Plate. Time then sets the room size, from 10 to 100%.</p>
+      </article>
+      <article class="chapter" data-focus="790,1320" data-run="knobs">
+        <h2>Three knobs for the rest.</h2>
+        <p>Time, Level / Depth, and Sound Color: a single filter, low-pass to the left and high-pass to the right.</p>
+      </article>
+      <article class="chapter" data-focus="0,1320" data-run="themes">
+        <h2>Five finishes.</h2>
+        <p>Pick one. The new look opens in a circle, just like in your DAW, and this page goes with it.</p>
+        <div class="names" id="names">
+          <button type="button"><i class="swatch" data-theme="classic"></i>Classic Black</button>
+          <button type="button"><i class="swatch" data-theme="midnight"></i>Midnight</button>
+          <button type="button"><i class="swatch" data-theme="copper"></i>Copper</button>
+          <button type="button"><i class="swatch" data-theme="emerald"></i>Emerald</button>
+          <button type="button"><i class="swatch" data-theme="platinum"></i>Platinum</button>
+        </div>
+      </article>
+      <article class="chapter" data-focus="300,1320" data-run="presets">
+        <h2>Start from a preset.</h2>
+        <p>Ten factory presets, from Dub Echo to Space Send. Save your own alongside them.</p>
+      </article>
+    </div>
+  </div>
+
+
+  <section id="get"><div class="wrap">
+    <h2 class="reveal">Get Twenty3FX.</h2>
+    <div class="closing reveal"><a class="btn" href="download.html">Download &middot; 15&nbsp;&euro;</a></div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">
+  <img src="images/la-pause.webp" alt="La pause: music, events, DJ" width="1945" height="808">
+  <span class="todo">[EMAIL] &nbsp; [LEGAL NOTICE] &nbsp; [TERMS OF SALE] &nbsp; [PRIVACY]</span>
+</div></footer>
+
+<script src="plugin.js"></script>
+<script>
+(() => {
+  const stage = document.getElementById('stage');
+  const t3 = Twenty3FX(document.getElementById('camera'));
+  const { plug, state, paint, setTheme, applyPreset, setNeedle, calm, fx, fxIndex, styles, themes, presets } = t3;
+  t3.onTouch = () => hands();
+
+  // Theme picker: the visitor chooses, and the choice follows them to the download page.
+  const themeButtons = [...document.querySelectorAll('#names button')];
+  const markTheme = (i) => themeButtons.forEach((b, n) => b.setAttribute('aria-pressed', n === i));
+  t3.onTheme = markTheme;
+  markTheme(state.theme);
+  themeButtons.forEach((b, i) => b.addEventListener('click', () => { if (i !== state.theme) setTheme(i, true); }));
+
+  // Camera: scale and centre the plug-in on the part the chapter is about.
+  let focus = [0, 1320];
+  const aim = () => t3.aim(stage, focus[0], focus[1]);
+  addEventListener('resize', aim);
+
+  // Each chapter plays its part on a loop, until a hand touches the plug-in.
+  let timer = 0;
+  function hands() { clearInterval(timer); timer = 0; }
+  const every = (ms, fn) => { hands(); if (calm) return; timer = setInterval(fn, ms); };
+  const runs = {
+    effects() { state.menu = null; state.on = true; every(900, () => { let n; do { n = (state.fx + 1) % fx.length; state.fx = n; } while (fx[n][0] === 'REVERB'); paint(); }); },
+    division() { state.menu = null; if (fx[state.fx][0] === 'REVERB') state.fx = fxIndex('ECHO'); let dir = 1; every(800, () => { if (state.div >= 8) dir = -1; if (state.div <= 0) dir = 1; state.div += dir; paint(); }); },
+    band() { state.menu = null; const order = [3, 0, 1, 2]; let i = 0; every(1000, () => { i = (i + 1) % 4; state.band = order[i]; paint(); }); },
+    reverb() { state.fx = fxIndex('REVERB'); state.menu = 'style'; every(1100, () => { state.style = (state.style + 1) % styles.length; paint(); }); },
+    knobs() { state.menu = null; let p = 0; every(70, () => { p += .06; state.level = .5 + .45 * Math.sin(p); state.color = .8 * Math.sin(p * .7); state.size = 50; paint(); setNeedle('time', 80 * Math.sin(p * .5)); }); },
+    themes() { state.menu = null; },
+    presets() { state.menu = 'preset'; let i = -1; every(1000, () => { i = (i + 1) % presets.length; applyPreset(i); state.menu = 'preset'; paint(); }); },
+  };
+
+  const chapters = [...document.querySelectorAll('.chapter')];
+  function enter(ch) {
+    chapters.forEach((c) => c.classList.toggle('now', c === ch));
+    focus = ch.dataset.focus.split(',').map(Number);
+    aim();
+    hands();
+    if (runs[ch.dataset.run]) runs[ch.dataset.run](); else state.menu = null;
+    paint();
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) enter(e.target); });
+  }, { rootMargin: matchMedia('(max-width: 860px)').matches ? '-70% 0px -25% 0px' : '-48% 0px -48% 0px' });
+  chapters.forEach((c) => io.observe(c));
+
+  // Stop everything once the story has scrolled away.
+  new IntersectionObserver(([e]) => {
+    t3.setVisible(e.isIntersecting);
+    if (!e.isIntersecting) hands();
+  }).observe(document.querySelector('.story'));
+
+  chapters[0].classList.add('now');
+  aim();
+
+  // The opening animation: the selector goes round the effects and lands on Echo.
+  if (!calm) {
+    const end = state.fx; let i = 0;
+    const sweep = setInterval(() => {
+      state.fx = i < fx.length ? i : Math.max(end, 2 * fx.length - 2 - i);
+      const landed = i >= fx.length && state.fx === end;
+      paint();
+      i++;
+      if (landed) clearInterval(sweep);
+    }, 50);
+    plug.addEventListener('pointerdown', () => clearInterval(sweep), { once: true });
+
+    document.documentElement.classList.add('reveal-ready');
+    const reveal = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); reveal.unobserve(e.target); } });
+    }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach((el) => reveal.observe(el));
+
+  }
+})();
+</script>
+</body>
+</html>
