@@ -54,3 +54,34 @@
 .row-m:hover { background: #2a2a2c !important; }
 .row-m[aria-checked="true"], .row-m[aria-checked="true"]:hover { background: #b3561d !important; color: #fff !important; }
 .cap { left: 22px; font-size: 7.5px; letter-spacing: .1em; color: #888; }
+
+/* V2: the changes on top of the current plug-in. */
+.v2 .name { left: 40px; top: 10px; width: auto; text-align: left; padding: 0; font-size: 16px; letter-spacing: .16em; }
+.v2 .badge { left: auto; right: 14px; top: 9px; width: 62px; border-radius: 4px; }
+.v2 #scope { left: 16px; top: 40px; width: 266px; height: 84px; }
+.v2 .bpm { left: 14px; top: 134px; font-size: 48px; letter-spacing: -.02em; }
+.v2 .val { left: 178px; top: 160px; font-size: 20px; }
+/* Rounder controls, and a small lift under the pointer. */
+.v2 .frame { border-radius: 18px; }
+.v2 .lcd { border-radius: 10px; }
+.v2 .band { border-radius: 14px; }
+.v2 .arrow { border-radius: 14px; }
+.v2 .auto { border-radius: 30px; }
+.v2 .big { border-radius: 24px; }
+.v2 .menu { border-radius: 16px; }
+.v2 .row-m { border-radius: 12px; }
+.v2 .arrow, .v2 .band, .v2 .auto, .v2 .tap, .v2 .big, .v2 .power, .v2 .badge, .v2 .knob { transition: transform .22s var(--ease), filter .15s, background .15s, box-shadow .15s; }
+.v2 .arrow:hover, .v2 .band:hover, .v2 .big:hover, .v2 .badge:hover { transform: scale(1.08); }
+.v2 .auto:hover, .v2 .tap:hover, .v2 .power:hover { transform: scale(1.06); }
+.v2 .knob:hover { transform: scale(1.04); }
+.v2 .arrow:active, .v2 .band:active, .v2 .big:active, .v2 .badge:active, .v2 .auto:active, .v2 .tap:active, .v2 .power:active { transform: scale(.96); }
+.v2 .lab { transition: color .3s, transform .22s var(--ease); }
+.v2 .lab:hover { transform: translate(-50%, -50%) rotate(var(--r)) scale(1.14); }
+.v2 .row-m { transition: background .12s, transform .22s var(--ease); }
+.v2 .row-m:hover { transform: scale(1.02); }
+/* Division: the value rolls inside a small window. */
+.v2 .divval { height: 20px; overflow: hidden; }
+.v2 .divval span { left: 0; width: 100%; top: 2px; }
+/* Knobs: brushed metal in the theme's finish, with a thin line as the pointer. */
+.v2 .knob { background: conic-gradient(from 20deg, var(--ml), var(--md) 12%, color-mix(in srgb, var(--ml) 92%, var(--md)) 25%, color-mix(in srgb, var(--md) 92%, #000) 38%, var(--ml) 50%, var(--md) 62%, color-mix(in srgb, var(--ml) 92%, var(--md)) 75%, color-mix(in srgb, var(--md) 92%, #000) 88%, var(--ml)); }
+.v2 .knob .needle::after { left: calc(50% - 2px); top: 3%; width: 4px; height: 32%; border-radius: 2px; background: #17171a; box-shadow: none; }
